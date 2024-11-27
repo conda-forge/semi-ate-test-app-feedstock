@@ -11,19 +11,19 @@ source:
   sha256: 5d282399b4d885687a36637d5ee22063ff87cd84a52fd89463d79f278876c842
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - pip >=3.8
-    - python
+    - python {{ python_min }}
   run:
     - numpy
     - paho-mqtt
     - pydantic
-    - python >=3.8
+    - python >={{ python_min }}
     - semi-ate-apps-common
     - semi-ate-common
     - transitions
@@ -37,6 +37,7 @@ test:
   requires:
     - pip
 
+    - python {{ python_min }}
 about:
   home: https://pypi.org/project/semi-ate-test-app/
   summary: Application/Environment that executes a specific test program
